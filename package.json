@@ -4,11 +4,14 @@
   "description": "chat app backend",
   "private": true,
   "main": "index.js",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "dev": "nodemon start.ts",
-    "start": "nodemon start.ts",
+    "start": "npm run build && node build/index.js",
     "build": "tsc",
-    "prepare": "husky install"
+    "heroku-postbuild": "npm install --prefix client && npm run build --prefix client"
   },
   "author": "nxtdtc",
   "license": "ISC",
@@ -21,7 +24,6 @@
     "eslint": "^7.31.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.23.4",
-    "husky": "^7.0.1",
     "lint-staged": "^11.1.0",
     "nodemon": "^2.0.12",
     "prettier": "^2.3.2"

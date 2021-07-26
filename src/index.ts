@@ -7,6 +7,7 @@ import { reply } from './functions/socket';
 require("dotenv").config();
 const http = require('http');
 const cors = require('cors');
+const path = require('path');
 // probably the least safe piece of code i've written:
 const corsOptions = {
   cors: true,
@@ -16,12 +17,14 @@ const corsOptions = {
 import mongoConnect from './config/mongo';
 import Message from './models/message';
 
-const port = process.env.SERVER_PORT;
+const port = process.env.PORT || process.env.SERVER_PORT;
 
 const app = express();
 app.use(cors());
 app.use(express.json());
-const httpServer = require("http").createServer(app);
+app.use(express.static(path.join(__dirname, '../client/build/')));
+app.get('*', (req: Request, res: Response) => res.sendFile(path.join(__dirname + '/../client/build/index.html')));
+const httpServer = http.createServer(app);
 
 const io = require('socket.io')(httpServer, corsOptions);
 
