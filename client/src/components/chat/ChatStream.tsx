@@ -12,10 +12,9 @@ const useStyles = makeStyles({
 });
 
 interface MessageEntry {
-  user: {
-    username: string
-  },
-  message: string
+  username: string,
+  message: string,
+  _id: any
 };
 type Messages = MessageEntry[];
 
@@ -26,13 +25,13 @@ const ChatStream = () => {
 
   useEffect(() => {
     socket?.on('newMessage', (data) => {
-      setMessages(messages => [...messages, data]);
-    })
-  })
+      setMessages((messages) => [...messages, data]);
+    });
+  }, [socket]);
 
   const renderMessages = () => (
-    messages.map((message: MessageEntry) => (
-      <p><b>{message.user.username}</b>&nbsp;&nbsp;{message.message}</p>
+    messages?.map((entry: MessageEntry) => (
+      <p key={entry._id}><b>{entry.username}</b>&nbsp;&nbsp;{entry.message}</p>
     ))
   );
 
