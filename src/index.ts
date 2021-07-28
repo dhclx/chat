@@ -16,6 +16,7 @@ const corsOptions = {
 
 import mongoConnect from './config/mongo';
 import Message from './models/message';
+import { isNamedImports } from 'typescript';
 
 const port = process.env.PORT || process.env.SERVER_PORT;
 
@@ -28,19 +29,24 @@ const httpServer = http.createServer(app);
 
 const io = require('socket.io')(httpServer, corsOptions);
 
+interface Users {
+  id: string,
+  name: string,
+}
+
 // Connect:
 io.on("connection", (socket: Socket) => {
-  console.log('connected to socket!!!!');
+  console.log('user on socketId: ' + socket.id + ' has connected! :)');
 
-  // Disconnect
-  socket.on('disconnect', () => {
-    // we need to add the user to db here maybe? need to accept some user info from frontend here
-    console.log('disconnected from socket :(');
-  });
+  // User login
+  socket.on('login', (name) => {
+    socket.join('chatRoom')
+    console.log(name + ' has logged in to the chat room')
+  })
 
   // New message:
   socket.on('message', (data) => {
-    console.log('received new message from frontend');
+    console.log('**received new message from frontend');
     createMessage(data)
       .then(res => {
         console.log('createMessage success: ', res);
@@ -48,7 +54,14 @@ io.on("connection", (socket: Socket) => {
       })
       .catch(e => console.log('createMessage error: ', e));
   });
+
+  // Disconnect
+  socket.on('disconnect', () => {
+    // we need to add the user to db here maybe? need to accept some user info from frontend here
+    console.log('user on socketId: ' + socket.id + ' has disconnected! :(');
+  });
 });
+
 
 const start = async () => {
   try {

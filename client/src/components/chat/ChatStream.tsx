@@ -28,7 +28,7 @@ const ChatStream = () => {
     socket?.on('newMessage', (data) => {
       setMessages(messages => [...messages, data]);
     })
-  })
+  }, [socket])
 
   const renderMessages = () => (
     messages.map((message: MessageEntry) => (

@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 import UserContext from '../auth/UserContext';
+import { useEffect } from 'react';
 
 const useStyles = makeStyles({
   container: {
@@ -18,10 +19,14 @@ const useStyles = makeStyles({
 
 const LoginForm: React.FunctionComponent = () => {
   const classes = useStyles();
-  const { login } = useContext(UserContext);
+  const { login, socket} = useContext(UserContext);
   const [username, setUsername] = useState<string>('');
 
-  const handleLogin = () => {
+  useEffect(() => {
+    socket?.emit('login', username)
+  }, [socket, username])
+
+  const handleLogin = async () => {
     login(username);
   };
 
@@ -29,8 +34,8 @@ const LoginForm: React.FunctionComponent = () => {
     <form className={classes.container} noValidate autoComplete="off">
       <p>hello!</p>
       <p>enter a username <b>of at least 3 chars</b> to join the chatroom!</p>
-      <TextField 
-        id="form-username" 
+      <TextField
+        id="form-username"
         label="username"
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)}
         onKeyPress={(e) => {
@@ -39,9 +44,9 @@ const LoginForm: React.FunctionComponent = () => {
             handleLogin();
           }
         }}
-        required 
+        required
       />
-      <Button 
+      <Button
         disabled={!(username.length > 2)}
         onClick={() => handleLogin()}
       >

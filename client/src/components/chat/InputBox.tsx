@@ -32,10 +32,10 @@ const InputBox = () => {
   };
 
   return (
-    <TextField 
-      id="message-input" 
-      variant="outlined" 
-      className={classes.messageInput} 
+    <TextField
+      id="message-input"
+      variant="outlined"
+      className={classes.messageInput}
       value={message}
       onChange={(e: React.ChangeEvent<HTMLInputElement>) => setMessage(e.target.value)}
       onKeyPress={(e) => {
