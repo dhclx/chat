@@ -1,7 +1,8 @@
 client/node_modules
-node_modules
+/node_modules
 client/.env
 .env
 client/.DS_Store
 .DS_Store
-build
+client/build
+/build
