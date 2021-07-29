@@ -30,25 +30,34 @@ const io = require('socket.io')(httpServer, corsOptions);
 
 // Connect:
 io.on("connection", (socket: Socket) => {
-  console.log('connected to socket!!!!');
+  console.log('user on socketId: ' + socket.id + ' has connected! :)');
 
-  // Disconnect
-  socket.on('disconnect', () => {
-    // we need to add the user to db here maybe? need to accept some user info from frontend here
-    console.log('disconnected from socket :(');
-  });
+  // User login
+  socket.on('login', (name, room) => {
+    socket.join(room)
+    console.log(name, 'has logged in to', room)
+  })
 
   // New message:
   socket.on('message', (data) => {
-    console.log('received new message from frontend');
+    console.log('**received new message from frontend');
+    console.log(data)
     createMessage(data)
       .then(res => {
         console.log('createMessage success: ', res);
+        io.to('chatRoom1').emit('newMessage', res)
         reply(data, res, socket);
       })
       .catch(e => console.log('createMessage error: ', e));
   });
+
+  // Disconnect
+  socket.on('disconnect', () => {
+    // we need to add the user to db here maybe? need to accept some user info from frontend here
+    console.log('user on socketId: ' + socket.id + ' has disconnected! :(');
+  });
 });
+
 
 const start = async () => {
   try {
