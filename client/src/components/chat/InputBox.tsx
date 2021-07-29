@@ -24,7 +24,7 @@ const InputBox = () => {
   );
 
   const sendMessage = () => {
-    socket?.send({
+    socket?.emit('message', {
       user,
       message
     });

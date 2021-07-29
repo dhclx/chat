@@ -16,7 +16,6 @@ const corsOptions = {
 
 import mongoConnect from './config/mongo';
 import Message from './models/message';
-import { isNamedImports } from 'typescript';
 
 const port = process.env.PORT || process.env.SERVER_PORT;
 
@@ -39,17 +38,19 @@ io.on("connection", (socket: Socket) => {
   console.log('user on socketId: ' + socket.id + ' has connected! :)');
 
   // User login
-  socket.on('login', (name) => {
-    socket.join('chatRoom')
-    console.log(name + ' has logged in to the chat room')
+  socket.on('login', (name, room) => {
+    socket.join(room)
+    console.log(name, 'has logged in to', room)
   })
 
   // New message:
   socket.on('message', (data) => {
     console.log('**received new message from frontend');
+    console.log(data)
     createMessage(data)
       .then(res => {
         console.log('createMessage success: ', res);
+        io.to('chatRoom1').emit('newMessage', res)
         reply(data, res, socket);
       })
       .catch(e => console.log('createMessage error: ', e));

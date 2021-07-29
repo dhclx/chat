@@ -23,7 +23,7 @@ const LoginForm: React.FunctionComponent = () => {
   const [username, setUsername] = useState<string>('');
 
   useEffect(() => {
-    socket?.emit('login', username)
+    socket?.emit('login', username, 'chatRoom1')
   }, [socket, username])
 
   const handleLogin = async () => {
