@@ -28,11 +28,6 @@ const httpServer = http.createServer(app);
 
 const io = require('socket.io')(httpServer, corsOptions);
 
-interface Users {
-  id: string,
-  name: string,
-}
-
 // Connect:
 io.on("connection", (socket: Socket) => {
   console.log('user on socketId: ' + socket.id + ' has connected! :)');
