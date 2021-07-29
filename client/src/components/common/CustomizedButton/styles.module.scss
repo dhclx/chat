@@ -1,0 +1,30 @@
+.deactive {
+  width: 250px;
+  height: 50px;
+  border-style: none;
+  margin: 20px 0;
+}
+.active {
+  width: 250px;
+  height: 50px;
+  border-style: none;
+  margin: 20px 0;
+  &:hover {
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 350px) {
+    width: 300px;
+  }
+}
+
+.deactive {
+  background-color:#e0e0e0;
+  color: #19161b;
+
+}
+.active {
+  background-color: #19161b;
+  color: #e0e0e0;
+}
+

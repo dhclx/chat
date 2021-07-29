@@ -16,7 +16,7 @@ const LoginDrawer: React.FunctionComponent = () => {
   }, [user]);
 
   return (
-    <Drawer anchor="right" open={open}>
+    <Drawer anchor="right" open={open} className="HELLO">
       <LoginForm />
     </Drawer>
   );
