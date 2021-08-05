@@ -6,14 +6,15 @@ import { useEffect } from 'react';
 
 const useStyles = makeStyles({
   chatStream: {
-    height: '100%',
+    height: 'auto',
     overflow: 'scroll',
     padding: '0 15px',
     display: 'flex',
     flexDirection: 'column-reverse'
   },
   message: {
-    margin: '10px 0'
+    margin: '10px 0',
+    color: 'white'
   }
 });
 
@@ -37,7 +38,7 @@ const ChatStream = () => {
       const nameStyles = {
         fontWeight: 400,
         fontStyle: 'italic',
-        color: '#333333'
+        color: 'white'
       };
 
       if (isCurrentUser) {
@@ -51,7 +52,7 @@ const ChatStream = () => {
 
       return (
         <p key={_id} className={classes.message}>
-          {!isAdmin && 
+          {!isAdmin &&
             <span style={nameStyles}>
               {username}:&nbsp;
             </span>
@@ -62,7 +63,7 @@ const ChatStream = () => {
         </p>
       )
     };
-  
+
     socket?.on('newMessage', (data) => {
       const formattedMessage = formatData(data);
       setMessages((messages) => [formattedMessage, ...messages]);

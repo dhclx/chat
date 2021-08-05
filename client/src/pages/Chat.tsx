@@ -13,17 +13,17 @@ const useStyles = makeStyles({
   },
   chatBox: {
     border: '1px solid black',
-    height: 700,
+    height: '100vh',
     width: '60%',
     margin: '20px 0px 20px 20px',
-    backgroundColor: '#aabfc5'
+    backgroundColor: '#32393c'
   },
   userList: {
     border: '1px solid black',
     borderLeft: 'none',
-    height: 700,
+    height: '100vh',
     width: '40%',
-    backgroundColor: '#cdd7da',
+    backgroundColor: '#738e96',
     margin: '20px 20px 20px 0px',
   }
 });

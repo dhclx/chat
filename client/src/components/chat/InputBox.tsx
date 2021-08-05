@@ -1,6 +1,5 @@
 import React, { useRef, useContext, useState } from 'react';
 
-import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { InputBase, IconButton } from '@material-ui/core';
 import Popover from '@material-ui/core/Popover';
@@ -14,8 +13,8 @@ const useStyles = makeStyles({
     width: 'auto'
   },
   emojiAdornment: {
-    fontSize: '25px',
-    color: '#777777',
+    fontSize: '50px',
+    color: '#0a5d7d',
     "&:hover": {
       color: '#111111',
       fontWeight: '700',
@@ -116,6 +115,8 @@ const InputBox = () => {
       <IconButton className={styles.iconButton} onClick={() => sendMessage()}>
         <SendIcon className={styles.send} />
       </IconButton>
+      <EmojiAdornment />
+
     </div>
   );
 };
