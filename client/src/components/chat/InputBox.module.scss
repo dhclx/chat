@@ -1,0 +1,35 @@
+.container {
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  width: auto;
+  background-color: #e3dceb;
+  align-self: center;
+  border-radius: 8px;
+  position: sticky;
+  top: 90%;
+  margin: 0 20px 20px 20px;
+}
+
+.input {
+  margin-left: 5px;
+  flex: 1;
+  color: #665555!important;
+}
+
+.iconButton {
+  margin: 0 10px;
+  background-color: rgb(31, 167, 201)!important;
+  background: linear-gradient(90deg, rgb(30, 120, 143) 0%, rgb(101, 170, 216) 100%)!important;
+  border-radius: 8px!important;
+}
+
+.send {
+  color: #fff;
+  margin: 5px;
+}
+
+.user {
+  color: #fff!important;
+  margin: 5px;
+}
