@@ -4,13 +4,23 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import InputBox from '../components/chat/InputBox';
 import ChatStream from '../components/chat/ChatStream';
+import UserList from '../components/chat/UserList';
 import UserContext from '../components/auth/UserContext';
 
 const useStyles = makeStyles({
-  chatContainer: {
+  container: {
+    display: 'flex'
+  },
+  chatBox: {
     border: '1px solid black',
     height: 700,
     width: 500
+  },
+  userList: {
+    border: '1px solid black',
+    borderLeft: 'none',
+    height: 700,
+    width: 250
   }
 });
 
@@ -27,9 +37,14 @@ const Chat: React.FunctionComponent = () => {
 
   if (connected) {
     return (
-      <div className={classes.chatContainer}>
-        <ChatStream />
-        <InputBox />
+      <div className={classes.container}>
+        <div className={classes.chatBox}>
+          <ChatStream />
+          <InputBox />
+        </div>
+        <div className={classes.userList}>
+          <UserList />
+        </div>
       </div>
     );
   }

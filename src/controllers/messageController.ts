@@ -1,5 +1,3 @@
-// if/when it make sense, this file should be split into appropriately named files for this dir
-
 import Message from '../models/message';
 
 // this function returns a list of recent messages upon joining for good UX:
@@ -20,7 +18,6 @@ interface MessagePayload {
 };
 
 export const createMessage = async (data: MessagePayload) => {
-  console.log(data);
   const messageDoc = {
     username: data.user.username,
     message: data.message

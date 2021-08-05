@@ -19,12 +19,14 @@ const useStyles = makeStyles({
 
 const LoginForm: React.FunctionComponent = () => {
   const classes = useStyles();
-  const { login, socket} = useContext(UserContext);
+  const { login, socket, user} = useContext(UserContext);
   const [username, setUsername] = useState<string>('');
 
   useEffect(() => {
-    socket?.emit('login', username, 'chatRoom1')
-  }, [socket, username])
+    if (user.auth) {
+      socket?.emit('login', user.username, 'chatRoom1')
+    }
+  }, [socket, user])
 
   const handleLogin = async () => {
     login(username);
@@ -39,7 +41,7 @@ const LoginForm: React.FunctionComponent = () => {
         label="username"
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)}
         onKeyPress={(e) => {
-          if (e.key === 'Enter' && (username.length > 2)) {
+          if (e.key === 'Enter' && (username.length > 2) && (username !== 'admin')) {
             e.preventDefault();
             handleLogin();
           }
@@ -47,7 +49,7 @@ const LoginForm: React.FunctionComponent = () => {
         required
       />
       <Button
-        disabled={!(username.length > 2)}
+        disabled={!(username.length > 2 && (username !== 'admin'))}
         onClick={() => handleLogin()}
       >
         enter
