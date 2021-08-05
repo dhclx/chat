@@ -10,7 +10,10 @@ const useStyles = makeStyles({
   chatContainer: {
     border: '1px solid black',
     height: 700,
-    width: 500
+    width: '60%',
+    margin: '20px',
+    borderRadius: '10px',
+    backgroundColor: '#2c383c'
   }
 });
 

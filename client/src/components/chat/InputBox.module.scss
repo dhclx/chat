@@ -1,12 +1,14 @@
 .container {
-  padding: 10px 0;
-  margin-top: 10px;
+  padding: 12px;
   display: flex;
   align-items: center;
-  width: 100%;
+  width: auto;
   background-color: #e3dceb;
   align-self: center;
-  // border-radius: 8px;
+  border-radius: 8px;
+  position: sticky;
+  top: 90%;
+  margin: 0 20px 20px 20px;
 }
 
 .input {

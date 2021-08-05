@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 
 const useStyles = makeStyles({
   chatStream: {
-    height: '100%',
+    height: 'auto',
     // overflow: 'scroll'
   }
 });
