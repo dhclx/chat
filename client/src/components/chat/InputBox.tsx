@@ -55,13 +55,13 @@ const InputBox = () => {
 
   const renderEmojiSelector = () => {
     const emojis = ['😀', '😬', '😁', '😂', '😆', '😍', '🙄', '😷', '🤮', '😭', '😎', '🤓', '😡'];
-    const formattedEmojis = emojis.map((emoji: any) => (
-      <div onClick={handleSelect} style={{ cursor: 'pointer' }}>
+    const formattedEmojis = emojis.map((emoji: any, i) => (
+      <div key={i} onClick={handleSelect} style={{ cursor: 'pointer', fontSize: '30px' }}>
         {emoji}
       </div>
     ));
     return (
-      <div>{formattedEmojis}</div>
+      <div style={{ display: 'flex' }}>{formattedEmojis}</div>
     );
   };
 
@@ -79,8 +79,8 @@ const InputBox = () => {
         onClose={handleClose}
         anchorEl={anchor}
         anchorOrigin={{
-          vertical: 700,
-          horizontal: 500,
+          vertical: 'bottom',
+          horizontal: 'center',
         }}
       >
         {renderEmojiSelector()}

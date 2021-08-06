@@ -46,7 +46,7 @@ const UserList = () => {
 
   const renderUsers = () => (
     users.map(user => (
-      <p className={classes.name}><b>{user.username}</b></p>
+      <p key={user.socketId} className={classes.name}><b>{user.username}</b></p>
     ))
   );
 
