@@ -14,12 +14,22 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-evenly'
+  },
+  disabledButton: {
+    backgroundColor: 'white',
+    border: '1px solid black',
+    color: 'black'
+  },
+  button: {
+    backgroundColor: 'black',
+    border: '1px solid black',
+    color: 'white'
   }
 });
 
 const LoginForm: React.FunctionComponent = () => {
   const classes = useStyles();
-  const { login, socket, user} = useContext(UserContext);
+  const { login, socket, user } = useContext(UserContext);
   const [username, setUsername] = useState<string>('');
 
   useEffect(() => {
@@ -49,6 +59,7 @@ const LoginForm: React.FunctionComponent = () => {
         required
       />
       <Button
+        className={!(username.length > 2 && (username !== 'admin')) ? classes.disabledButton : classes.button}
         disabled={!(username.length > 2 && (username !== 'admin'))}
         onClick={() => handleLogin()}
       >

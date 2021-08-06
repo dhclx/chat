@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState} from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -9,18 +9,22 @@ import UserContext from '../components/auth/UserContext';
 
 const useStyles = makeStyles({
   container: {
-    display: 'flex'
+    display: 'flex',
   },
   chatBox: {
     border: '1px solid black',
-    height: 700,
-    width: 500
+    height: '100vh',
+    width: '60%',
+    margin: '20px 0px 20px 20px',
+    backgroundColor: '#32393c'
   },
   userList: {
     border: '1px solid black',
     borderLeft: 'none',
-    height: 700,
-    width: 250
+    height: '100vh',
+    width: '40%',
+    backgroundColor: '#738e96',
+    margin: '20px 20px 20px 0px',
   }
 });
 

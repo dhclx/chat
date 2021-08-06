@@ -1,19 +1,20 @@
 import React, { useRef, useContext, useState } from 'react';
 
-import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import { InputBase, IconButton } from '@material-ui/core';
 import Popover from '@material-ui/core/Popover';
 import { makeStyles } from '@material-ui/core/styles';
-
+import styles from './InputBox.module.scss';
 import UserContext from '../auth/UserContext';
+import SendIcon from '@material-ui/icons/Send';
 
 const useStyles = makeStyles({
   messageInput: {
-    width: 500
+    width: 'auto'
   },
   emojiAdornment: {
-    fontSize: '25px',
-    color: '#777777',
+    fontSize: '50px',
+    color: '#0a5d7d',
     "&:hover": {
       color: '#111111',
       fontWeight: '700',
@@ -46,14 +47,14 @@ const InputBox = () => {
     setAnchor(null);
   }
 
-  const handleSelect= (e: any) => {
+  const handleSelect = (e: any) => {
     const emoji = e.currentTarget.innerText;
     setMessage((message) => message + emoji);
     handleClose();
   };
 
   const renderEmojiSelector = () => {
-    const emojis = ['😀','😬','😁','😂','😆','😍','🙄','😷','🤮','😭','😎','🤓','😡'];
+    const emojis = ['😀', '😬', '😁', '😂', '😆', '😍', '🙄', '😷', '🤮', '😭', '😎', '🤓', '😡'];
     const formattedEmojis = emojis.map((emoji: any) => (
       <div onClick={handleSelect} style={{ cursor: 'pointer' }}>
         {emoji}
@@ -96,25 +97,27 @@ const InputBox = () => {
   };
 
   return (
-    <TextField
-      id="message-input"
-      variant="outlined"
-      className={classes.messageInput}
-      value={message}
-      color="primary"
-      autoComplete="off"
-      onChange={(e: React.ChangeEvent<HTMLInputElement>) => setMessage(e.target.value)}
-      onKeyPress={(e) => {
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          sendMessage();
-        }
-      }}
-      InputProps={{
-        startAdornment: <UserAdornment />,
-        endAdornment: <EmojiAdornment />
-      }}
-    />
+    <div className={styles.container}>
+      <UserAdornment />
+      <InputBase
+        id="message-input"
+        className={styles.input}
+        placeholder="Write here..."
+        value={message}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setMessage(e.target.value)}
+        onKeyDown={e => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            sendMessage();
+          };
+        }}
+      />
+      <IconButton className={styles.iconButton} onClick={() => sendMessage()}>
+        <SendIcon className={styles.send} />
+      </IconButton>
+      <EmojiAdornment />
+
+    </div>
   );
 };
 
