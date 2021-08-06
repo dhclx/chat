@@ -13,7 +13,7 @@ const useStyles = makeStyles({
   },
   chatBox: {
     border: '1px solid black',
-    height: '100vh',
+    height: '96vh',
     width: '60%',
     margin: '20px 0px 20px 20px',
     backgroundColor: '#32393c'
@@ -21,7 +21,7 @@ const useStyles = makeStyles({
   userList: {
     border: '1px solid black',
     borderLeft: 'none',
-    height: '100vh',
+    height: '96vh',
     width: '40%',
     backgroundColor: '#738e96',
     margin: '20px 20px 20px 0px',
